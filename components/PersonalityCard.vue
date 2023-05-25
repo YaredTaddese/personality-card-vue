@@ -64,7 +64,7 @@
 
     <!-- Regenerate -->
     <div class="py-4 flex justify-center">
-      <button class="rounded-md bg-primary-500 text-white font-bold px-3 py-1">
+      <button @click="fetchStudent" class="rounded-md bg-primary-500 text-white font-bold px-3 py-1">
         Random Student
       </button>
     </div>
@@ -86,7 +86,7 @@ export default {
   },
 
   async mounted() {
-    this.$store.dispatch('user/fetch')
+    this.fetchStudent()
   },
 
   methods: {
@@ -97,6 +97,9 @@ export default {
       return `${address.street_name}, ${address.street_address}, ${address.city
         }, ${address.state}, ${address.zip_code.split('-')[0]}, ${address.country
         }`
+    },
+    fetchStudent() {
+      this.$store.dispatch('user/fetch')
     },
   },
 }
