@@ -33,7 +33,8 @@ const API_BASE_URL = 'https://random-data-api.com/api/v2'
 
 export const state = () => ({
   selectedUser: undefined as User | undefined,
-  userBrands: undefined as string[] | undefined,
+  userBrands: undefined as Brand[] | undefined,
+  loading: true,
 })
 
 export type UserState = ReturnType<typeof state>
@@ -44,25 +45,34 @@ export const getters: GetterTree<UserState, UserState> = {
 }
 
 export const mutations: MutationTree<UserState> = {
-  setUser(state: any, user: User) {
+  setLoading(state: UserState, loading: boolean) {
+    state.loading = loading
+  },
+  setUser(state: UserState, user: User) {
     state.selectedUser = user
   },
-  setBrands(state: any, brand: Brand) {
-    state.userBrands = brand
+  setBrands(state: UserState, brands: Brand[]) {
+    state.userBrands = brands
   },
 }
 
 export const actions: ActionTree<UserState, UserState> = {
-  async fetchUser({ commit }) {
-    const user = (await axios.get(`${API_BASE_URL}/users`)).data as User
-    commit('setUser', user)
-  },
+  async fetch({ commit }) {
+    commit('setLoading', true)
 
-  async fetchBrands({ commit }) {
-    const count = Math.floor(Math.random() * 10)
+    try {
+      const user = (await axios.get(`${API_BASE_URL}/users`)).data as User
+      commit('setUser', user)
 
-    const brands = (await axios.get(`${API_BASE_URL}/appliances?size=${count}`))
-      .data as Brand
-    commit('setBrands', brands)
+      const count = Math.floor(Math.random() * 10)
+      const brands = (
+        await axios.get(`${API_BASE_URL}/appliances?size=${count}`)
+      ).data as Brand[]
+      commit('setBrands', count > 1 ? brands : [brands])
+    } catch (error) {
+      console.error(error)
+    }
+
+    commit('setLoading', false)
   },
 }

@@ -1,12 +1,18 @@
 <template>
-  <div class="bg-white rounded-3xl p-16 w-144">
+  <div v-if="loading">Loading...</div>
+  <div v-else-if="!(selectedUser && userBrands)">Error: Fetch failed</div>
+  <div v-else class="bg-white rounded-3xl p-16 w-144">
     <!-- Heading -->
     <div class="flex gap-8">
-      <img class="h-24 w-24 bg-gray-100 outline outline-1 outline-gray-300 rounded-full"
-        src="https://robohash.org/voluptasetullam.png?size=300x300&set=set1" />
+      <img class="h-24 w-24 bg-gray-100 outline outline-1 outline-gray-300 rounded-full" :src="selectedUser.avatar" />
       <div class="flex flex-col justify-center">
-        <h3 class="text-2xl text-heading-black font-bold">Jane Doe</h3>
-        <h4 class="text-1xl text-subtitle-gray">32 / Female</h4>
+        <h3 class="text-2xl text-heading-black font-bold">
+          {{ selectedUser.first_name }} {{ selectedUser.last_name }}
+        </h3>
+        <h4 class="text-1xl text-subtitle-gray">
+          {{ getUserAge(selectedUser.date_of_birth) }} /
+          {{ selectedUser.gender }}
+        </h4>
       </div>
     </div>
 
@@ -22,34 +28,36 @@
       <h3 class="text-3xl text-primary-400 font-black">Details</h3>
       <div class="py-4 grid grid-cols-2 gap-2">
         <div class="font-bold">Username:</div>
-        <div>jane.doe</div>
+        <div>{{ selectedUser.username }}</div>
 
         <div class="font-bold">Date of Birth:</div>
-        <div>1967/09/27</div>
+        <div>{{ selectedUser.date_of_birth.replaceAll('-', '/') }}</div>
 
         <div class="font-bold">Phone:</div>
-        <div>+20 963-565-1458</div>
+        <div>
+          {{
+            selectedUser.phone_number.replaceAll('.', '-').split('x')[0].trim()
+          }}
+        </div>
 
         <div class="font-bold">Email:</div>
-        <div>jane.doe@email.com</div>
+        <div>{{ selectedUser.email }}</div>
 
         <div class="font-bold">Subscription:</div>
-        <div>Premium</div>
+        <div>{{ selectedUser.subscription.plan }}</div>
 
         <div class="font-bold">Location:</div>
-        <div>
-          Gusikowski Pike, 3907 Titus Plains, Nathanaelland, New York, 35230,
-          United States
-        </div>
+        <div>{{ getAddressString(selectedUser.address) }}</div>
       </div>
     </div>
 
     <!-- Brands -->
     <div class="py-4">
       <h3 class="text-3xl text-primary-400 font-black">Brands</h3>
-      <div class="py-4 flex gap-2">
-        <div class="bg-label-gray px-3 py-1 rounded-md">Sharp</div>
-        <div class="bg-label-gray px-3 py-1 rounded-md">Electrolux</div>
+      <div class="py-4 flex flex-wrap gap-2">
+        <div v-for="brand in userBrands" class="bg-label-gray px-3 py-1 rounded-md" @key="brand.id">
+          {{ brand.brand }}
+        </div>
       </div>
     </div>
 
@@ -64,24 +72,31 @@
 
 <script>
 import { mapState } from 'vuex'
+import { differenceInYears } from 'date-fns'
 
 export default {
   name: 'PersonalityCard',
-
   computed: {
     ...mapState({
-      selectedUser(state) {
-        console.log('stuff')
-        console.log(state)
-        return state.user.selectedUser
-      },
+      loading: (state) => state.user.loading,
+      selectedUser: (state) => state.user.selectedUser,
       userBrands: (state) => state.user.userBrands,
     }),
   },
 
-  mounted() {
-    this.$store.dispatch('user/fetchUser')
-    this.$store.dispatch('user/fetchBrands')
+  async mounted() {
+    this.$store.dispatch('user/fetch')
+  },
+
+  methods: {
+    getUserAge(dob) {
+      return differenceInYears(new Date(), new Date(dob))
+    },
+    getAddressString(address) {
+      return `${address.street_name}, ${address.street_address}, ${address.city
+        }, ${address.state}, ${address.zip_code.split('-')[0]}, ${address.country
+        }`
+    },
   },
 }
 </script>
