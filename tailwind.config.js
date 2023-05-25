@@ -10,10 +10,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FFA789',
+        primary: {
+          400: '#FFA789',
+          500: '#FFA573',
+        },
         'foreground-default': '#505050',
         'heading-black': '#333333',
         'subtitle-gray': '#909090',
+        'label-gray': '#F2F2F2',
+      },
+      spacing: {
+        144: '36rem',
       },
     },
   },
