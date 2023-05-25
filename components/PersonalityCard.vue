@@ -3,7 +3,7 @@
   <div v-else-if="!(selectedUser && userBrands)">Error: Fetch failed</div>
   <div
     v-else
-    class="bg-white rounded-3xl p-8 md:p-16 w-full md:w-144"
+    class="bg-white outline outline-1 outline-gray-200 rounded-3xl p-8 md:p-16 w-full md:w-144"
   >
     <PersonalityCardHeading
       :first-name="selectedUser.first_name"
@@ -44,7 +44,7 @@
     <!-- Regenerate -->
     <div class="py-4 flex justify-center">
       <button
-        class="rounded-md bg-primary-500 text-white font-bold px-3 py-1"
+        class="rounded-md bg-primary-500 hover:bg-primary-400/80 transition-colors text-white font-bold px-3 py-1"
         @click="fetchStudent"
       >
         Random Student
