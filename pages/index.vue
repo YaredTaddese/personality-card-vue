@@ -10,6 +10,6 @@ import PersonalityCard from '@/components/PersonalityCard.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
-  components: [PersonalityCard],
+  components: { PersonalityCard },
 })
 </script>

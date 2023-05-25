@@ -2,10 +2,8 @@
   <div class="bg-white rounded-3xl p-16 w-144">
     <!-- Heading -->
     <div class="flex gap-8">
-      <img
-        class="h-24 w-24 bg-gray-100 outline outline-1 outline-gray-300 rounded-full"
-        src="https://robohash.org/voluptasetullam.png?size=300x300&set=set1"
-      />
+      <img class="h-24 w-24 bg-gray-100 outline outline-1 outline-gray-300 rounded-full"
+        src="https://robohash.org/voluptasetullam.png?size=300x300&set=set1" />
       <div class="flex flex-col justify-center">
         <h3 class="text-2xl text-heading-black font-bold">Jane Doe</h3>
         <h4 class="text-1xl text-subtitle-gray">32 / Female</h4>
@@ -65,7 +63,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'PersonalityCard',
+
+  computed: {
+    ...mapState({
+      selectedUser(state) {
+        console.log('stuff')
+        console.log(state)
+        return state.user.selectedUser
+      },
+      userBrands: (state) => state.user.userBrands,
+    }),
+  },
+
+  mounted() {
+    this.$store.dispatch('user/fetchUser')
+    this.$store.dispatch('user/fetchBrands')
+  },
 }
 </script>
