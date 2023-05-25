@@ -1,5 +1,6 @@
 import { GetterTree, MutationTree, ActionTree } from 'vuex'
 import axios from 'axios'
+import { LoremIpsum } from 'lorem-ipsum'
 
 type User = {
   id: number
@@ -11,6 +12,7 @@ type User = {
   gender: string
   phone_number: string
   date_of_birth: string
+  bio: string
   address: {
     city: string
     street_name: string
@@ -30,6 +32,14 @@ type Brand = {
 }
 
 const API_BASE_URL = 'https://random-data-api.com/api/v2'
+
+function dedupeBrands(brands: Brand[]) {
+  const uniqueMap = new Map()
+  for (const brandObj of brands) {
+    uniqueMap.set(brandObj.brand, brandObj)
+  }
+  return Array.from(uniqueMap.values())
+}
 
 export const state = () => ({
   selectedUser: undefined as User | undefined,
@@ -61,14 +71,23 @@ export const actions: ActionTree<UserState, UserState> = {
     commit('setLoading', true)
 
     try {
-      const user = (await axios.get(`${API_BASE_URL}/users`)).data as User
+      const fetchedUser = (await axios.get(`${API_BASE_URL}/users`)).data
+      const user = {
+        ...fetchedUser,
+        bio: new LoremIpsum({
+          sentencesPerParagraph: {
+            min: 3,
+            max: 5,
+          },
+        }).generateParagraphs(1),
+      } as User
       commit('setUser', user)
 
       const count = Math.floor(Math.random() * 10)
       const brands = (
         await axios.get(`${API_BASE_URL}/appliances?size=${count}`)
       ).data as Brand[]
-      commit('setBrands', count > 1 ? brands : [brands])
+      commit('setBrands', count > 1 ? dedupeBrands(brands) : [brands])
     } catch (error) {
       console.error(error)
     }

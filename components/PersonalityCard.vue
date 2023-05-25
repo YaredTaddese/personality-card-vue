@@ -18,9 +18,10 @@
 
     <!-- Paragraph -->
     <p class="pt-12 pb-8">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae velit
+      {{ selectedUser.bio }}
+      <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae velit
       eius inventore iusto hic iure modi ex eos? Dignissimos explicabo possimus
-      eveniet. Saepe aspernatur aperiam odit aliquid facere qui incidunt!
+      eveniet. Saepe aspernatur aperiam odit aliquid facere qui incidunt! -->
     </p>
 
     <!-- Details -->

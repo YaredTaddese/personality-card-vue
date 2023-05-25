@@ -16,6 +16,7 @@
     "axios": "^1.4.0",
     "core-js": "^3.25.3",
     "date-fns": "^2.30.0",
+    "lorem-ipsum": "^2.0.8",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
