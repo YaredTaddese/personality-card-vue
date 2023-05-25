@@ -1,7 +1,10 @@
 <template>
   <div v-if="loading">Loading...</div>
   <div v-else-if="!(selectedUser && userBrands)">Error: Fetch failed</div>
-  <div v-else class="bg-white rounded-3xl p-16 w-144">
+  <div
+    v-else
+    class="bg-white rounded-3xl p-8 md:p-16 w-full md:w-144"
+  >
     <PersonalityCardHeading
       :first-name="selectedUser.first_name"
       :last-name="selectedUser.last_name"

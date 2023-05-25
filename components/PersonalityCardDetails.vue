@@ -1,7 +1,7 @@
 <template>
   <div class="py-4">
     <StyledHeader>Details</StyledHeader>
-    <div class="py-4 grid grid-cols-2 gap-2">
+    <div class="py-4 w-full overflow-x-scroll grid grid-cols-2 gap-2">
       <div class="font-bold">Username:</div>
       <div>{{ username }}</div>
 
