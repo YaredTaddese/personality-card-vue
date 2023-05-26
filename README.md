@@ -1,68 +1,49 @@
-# vue-nuxt-tailwind
+# Personality Card
 
-## Build Setup
+[Live Demo](https://personality-card.netlify.app)
 
-```bash
-# install dependencies
-$ yarn install
+## Tasks
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+The following tasks were preformed in order:
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+1. Created a basic Nuxt.js app using `create-nuxt-app` and the following options:
 
-# generate static project
-$ yarn generate
-```
+   - Programming language: `TypeScript`
+   - Package manager: `Yarn`
+   - UI framework: `None`
+   - Template engine: `HTML`
+   - Nuxt.js modules: `None`
+   - Linting tools: `ESLint, Prettier`
+   - Testing framework: `None`
+   - Rendering mode: `Single Page App`
+   - Deployment target: `Server (Node.js hosting)`
+   - Development tools: `None`
+   - Continuous integration: `None`
+   - Version control system: `Git`
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+<br />
 
-## Special Directories
+2. Installed and configured `tailwindcss`.
+3. Added custom colors and size values to the tailwind config file `tailwind.config.js`
+4. Created a basic `PersonalityCard` component.
+5. Created a `vuex` store in `store/user.ts` for the `PersonalityCard` component's state.
+6. Installed and integrated `axios` to fetch data from [Random Data API](https://random-data-api.com).
+7. Displayed fetched data on the card component.
+8. Added a placeholder bio to the fetched user using the `lorem-ipsum` package.
+9. Implemented a random student button.
+10. Split the `PersonalityCard` into multiple components:  
+    `ChipLabel`, `PersonalityCard`, `PersonalityCardDetails`, `PersonalityCardHeading`, `StyledHeader`
+11. Made the card responsive and applied minor visual tweaks.
+12. Adjusted the layout of `PersonalityCardHeading` to be vertical on small screens.
+13. Added a loading spinner component: `LoadingSpinner`.
+14. Handled text overflow on the `ChipLabel` component.
+15. Added service worker caching by adding the `@nuxtjs/pwa` package and modifying the `nuxt.config.js` file according to the docs.
+16. Replaced the loading spinner with a loading skeleton component: `LoadingSkeleton`.
+17. Replaced error text with a proper template and a more clear message.
+18. Updated the package name and app title.
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+## Installation
 
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+1. Clone the repository.
+2. Install the necessary dependencies by running `yarn install`.
+3. Start the development server with `yarn dev`.
