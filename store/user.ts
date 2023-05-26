@@ -90,6 +90,8 @@ export const actions: ActionTree<UserState, UserState> = {
       commit('setBrands', count > 1 ? dedupeBrands(brands) : [brands])
     } catch (error) {
       console.error(error)
+      commit('setUser', undefined)
+      commit('setBrands', undefined)
     }
 
     commit('setLoading', false)

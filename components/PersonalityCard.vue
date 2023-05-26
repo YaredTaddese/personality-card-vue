@@ -5,7 +5,12 @@
     <div v-if="loading">
       <LoadingSkeleton />
     </div>
-    <div v-else-if="!(selectedUser && userBrands)">Error: Fetch failed</div>
+    <div v-else-if="!(selectedUser && userBrands)" class="flex justify-center">
+      <div class="flex-col py-16 w-96 text-center">
+        <h3 class="font-black text-red-600 text-3xl">Network Error</h3>
+        <h3 class="pt-4">Failed to fetch student data. Please check your network connection and try again.</h3>
+      </div>
+    </div>
     <div v-else>
       <PersonalityCardHeading
         :first-name="selectedUser.first_name"
