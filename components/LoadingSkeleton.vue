@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="animate-pulse">
     <!-- Heading -->
     <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
       <div class="h-24 w-24 bg-gray-200 rounded-full"></div>
