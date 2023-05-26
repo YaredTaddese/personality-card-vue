@@ -1,11 +1,9 @@
 <template>
   <div
-    :class="`${
-      loading ? 'h-screen' : ''
-    } bg-white outline outline-1 outline-gray-200 rounded-3xl p-8 sm:p-16 w-full md:w-144 `"
+    class="bg-white outline outline-1 outline-gray-200 rounded-3xl p-8 sm:p-16 w-full md:w-144"
   >
     <div v-if="loading">
-      <LoadingSpinner />
+      <LoadingSkeleton />
     </div>
     <div v-else-if="!(selectedUser && userBrands)">Error: Fetch failed</div>
     <div v-else>
@@ -44,16 +42,17 @@
           />
         </div>
       </div>
+    </div>
 
-      <!-- Regenerate -->
-      <div class="py-4 flex justify-center">
-        <button
-          class="rounded-md bg-primary-500 hover:bg-primary-400/80 transition-colors text-white font-bold px-3 py-1"
-          @click="fetchStudent"
-        >
-          Random Student
-        </button>
-      </div>
+    <!-- Regenerate -->
+    <div class="py-4 flex justify-center">
+      <button
+        class="rounded-md disabled:opacity-40 disabled:cursor-not-allowed bg-primary-500 enabled:hover:bg-primary-400/80 transition-colors text-white font-bold px-3 py-1"
+        :disabled="loading"
+        @click="fetchStudent"
+      >
+        Random Student
+      </button>
     </div>
   </div>
 </template>
@@ -65,13 +64,13 @@ import PersonalityCardHeading from './PersonalityCardHeading.vue'
 import PersonalityCardDetails from './PersonalityCardDetails.vue'
 import ChipLabel from '@/components/ChipLabel.vue'
 import StyledHeader from '@/components/StyledHeader.vue'
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 
 export default {
   name: 'PersonalityCard',
   components: {
     ChipLabel,
-    LoadingSpinner,
+    LoadingSkeleton,
     PersonalityCardDetails,
     PersonalityCardHeading,
     StyledHeader,
