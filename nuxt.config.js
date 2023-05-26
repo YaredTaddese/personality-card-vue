@@ -9,7 +9,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'vue-nuxt-tailwind',
+    title: 'Personality Card',
     htmlAttrs: {
       lang: 'en',
     },
