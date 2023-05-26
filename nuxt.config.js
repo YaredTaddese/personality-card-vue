@@ -38,10 +38,25 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/pwa'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    pwa: {
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: 'https://random-data-api.com/api/v2/*',
+            handler: 'cacheFirst',
+            method: 'GET',
+            strategyOptions: {
+              cacheName: 'api-cache',
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+        ],
+      },
+    },
     postcss: {
       postcssOptions: {
         plugins: {
