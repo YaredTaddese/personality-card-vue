@@ -19,6 +19,9 @@ module.exports = {
         'subtitle-gray': '#909090',
         'label-gray': '#F2F2F2',
       },
+      maxWidth: {
+        '2xs': '10rem',
+      },
       spacing: {
         144: '36rem',
       },
