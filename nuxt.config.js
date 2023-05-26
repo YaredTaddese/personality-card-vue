@@ -35,6 +35,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -64,6 +65,12 @@ export default {
           autoprefixer: {},
         },
       },
+    },
+  },
+
+  googleFonts: {
+    families: {
+      Catamaran: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
   },
 }

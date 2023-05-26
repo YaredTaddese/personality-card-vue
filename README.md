@@ -41,6 +41,7 @@ The following tasks were preformed in order:
 16. Replaced the loading spinner with a loading skeleton component: `LoadingSkeleton`.
 17. Replaced error text with a proper template and a more clear message.
 18. Updated the package name and app title.
+19. Switched font to `Catamaran` using the `@nuxtjs/google-fonts` package.
 
 ## Installation
 
