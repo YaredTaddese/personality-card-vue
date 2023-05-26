@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center p-2 md:p-16">
+  <div class="flex justify-center p-2 min-w-min md:p-16">
     <PersonalityCard />
   </div>
 </template>

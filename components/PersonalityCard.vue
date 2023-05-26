@@ -2,7 +2,7 @@
   <div
     :class="`${
       loading ? 'h-screen' : ''
-    } bg-white outline outline-1 outline-gray-200 rounded-3xl p-8 md:p-16 w-full md:w-144 `"
+    } bg-white outline outline-1 outline-gray-200 rounded-3xl p-8 sm:p-16 w-full md:w-144 `"
   >
     <div v-if="loading">
       <LoadingSpinner />
