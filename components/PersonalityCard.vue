@@ -17,7 +17,7 @@
         :avatar="selectedUser.avatar"
       />
 
-      <p class="pt-12 pb-8">
+      <p class="pt-12 pb-8 text-justify md:text-left">
         {{ selectedUser.bio }}
       </p>
 
